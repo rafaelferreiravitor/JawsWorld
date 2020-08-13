@@ -11,32 +11,26 @@ namespace RPG.Movement
     public class Mover : MonoBehaviour
     {
 
-        [SerializeField] GameObject target;
-
+        [SerializeField] Vector3 targetDestination;
+        NavMeshAgent navMeshAgent;
 
         void Start()
         {
-            //GetComponent<NavMeshAgent>().speed *= 2;
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         // Update is called once per frame
         void Update()
         {
-        
-            //if (Input.getmousebutton(0))
-            //{
-            //    MoveToCursor();
-            //}
-
-
             UpdateAnimator();
-        
+            
+            //print(navMeshAgent.steeringTarget);
         }
 
         private void UpdateAnimator()
         {
             //Getting the global direction
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = navMeshAgent.velocity;
             //convert global to local direction
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
@@ -44,11 +38,25 @@ namespace RPG.Movement
 
         }
 
-
-
-        public void MoveTo(Vector3 destination)
+        private void FaceTarget()
         {
-            GetComponent<NavMeshAgent>().SetDestination(destination);
+            float speed = 100;
+            Vector3 direction = (targetDestination - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * speed);
+        }
+
+
+
+        public void MoveTo(Vector3 destination, float stopRange = 0)
+        {
+            targetDestination = destination;
+            navMeshAgent.stoppingDistance = stopRange;
+            navMeshAgent.SetDestination(destination);
+            if (stopRange > 0)
+            {
+                FaceTarget();
+            }
         }
     }
 }
