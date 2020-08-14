@@ -1,4 +1,5 @@
-﻿using RPG.Movement;
+﻿using RPG.Core;
+using RPG.Movement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,13 @@ namespace RPG.Combat
             if (target != null)
             {
                 GetComponent<Mover>().MoveTo(target.position, weaponRange);
+                GetComponent<ActionScheduler>().StartAction(this);
             }
         }
 
         public void Attack(CombatTarget combatTarget)
         {
+                
             target = combatTarget?.transform;
         }
 

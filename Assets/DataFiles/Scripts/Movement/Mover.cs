@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPG.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,12 @@ namespace RPG.Movement
             {
                 FaceTarget();
             }
+        }
+
+        public void StartMoving(Vector3 destination, float stopRange = 0)
+        {
+            GetComponent<ActionScheduler>().StartAction(this);
+            MoveTo(destination, stopRange);
         }
     }
 }
