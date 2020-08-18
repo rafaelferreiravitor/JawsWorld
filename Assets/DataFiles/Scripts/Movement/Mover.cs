@@ -1,7 +1,4 @@
 ﻿using RPG.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +6,7 @@ namespace RPG.Movement
 {
 
 
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
 
         [SerializeField] Vector3 targetDestination;
@@ -51,19 +48,27 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination, float stopRange = 0)
         {
+
             targetDestination = destination;
+            navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
             navMeshAgent.SetDestination(destination);
             if (stopRange > 0)
             {
                 FaceTarget();
             }
+            
         }
 
-        public void StartMoving(Vector3 destination, float stopRange = 0)
+        public void StartAction(Vector3 destination, float stopRange = 0)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             MoveTo(destination, stopRange);
+        }
+
+        public void Cancel()
+        {
+            navMeshAgent.isStopped = true;
         }
     }
 }

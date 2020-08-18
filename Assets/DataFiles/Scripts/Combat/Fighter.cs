@@ -7,30 +7,75 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
-        Transform target;
+        CombatTarget combatTarget;
+
 
         private void Update()
         {
-            if (target != null)
+            if (combatTarget != null)
             {
-                GetComponent<Mover>().MoveTo(target.position, weaponRange);
-                GetComponent<ActionScheduler>().StartAction(this);
+                
+                if (!IsInRange())
+                {
+                    StartAction(combatTarget);
+                }
+                else
+                {
+                    //GetComponent<Mover>().Cancel();
+                    AttackBehaviour();
+                }
+
+                //GetComponent<ActionScheduler>().StartAction(this);
             }
         }
 
-        public void Attack(CombatTarget combatTarget)
+        private void StartAction(CombatTarget target)
         {
-                
-            target = combatTarget?.transform;
+            GetComponent<ActionScheduler>().StartAction(this);
+            Attack(target);
+            GetComponent<Mover>().MoveTo(combatTarget.transform.position, weaponRange);
+            
         }
 
-        public void CancelAttack()
+        private void AttackBehaviour()
         {
-            target = null;
+            GetComponent<Animator>().SetTrigger("attack");
         }
 
+        bool IsInRange()
+        {
+            if (combatTarget != null)
+            {
+                if (Vector3.Distance(transform.position, combatTarget.transform.position) <= weaponRange)
+                    return true;
+            }
+            return false;
+        }
+
+        public void Attack(CombatTarget target)
+        {
+            if (target != null)
+                combatTarget = target;
+            //else
+                //Cancel();
+        }
+
+        
+
+        public void Cancel()
+        {
+            combatTarget = null;
+        }
+
+
+
+        //Animation event
+        void Hit()
+        {
+            
+        }
     }
 }
