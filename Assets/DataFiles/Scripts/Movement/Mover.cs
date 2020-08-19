@@ -53,10 +53,12 @@ namespace RPG.Movement
             navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
             navMeshAgent.SetDestination(destination);
-            if (stopRange > 0)
+            FaceTarget();
+            /*if (stopRange > 0)
             {
+                print("chamou!");
                 FaceTarget();
-            }
+            }*/
             
         }
 
