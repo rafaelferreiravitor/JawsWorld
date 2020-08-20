@@ -36,7 +36,7 @@ namespace RPG.Control
                         
                         if (combatTarget)
                         {
-                            GetComponent<Fighter>().Attack(combatTarget);
+                            GetComponent<Fighter>().Attack(combatTarget.GetComponent<Health>());
                             //GetComponent<Mover>().StartAction(combatTarget.transform.position);
                             return true;
                         }
