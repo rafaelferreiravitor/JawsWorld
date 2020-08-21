@@ -26,6 +26,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda4314f56e605b42857b90570be0f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6342451177014752125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521013982311369655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ec232b70077d4f9f3b492df6a39e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
 --- !u!1001 &2305718318671522755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,9 +107,13 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1573264127, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.237328
+      value: 52.06
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -104,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.482376
+      value: 36.25
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalRotation.x

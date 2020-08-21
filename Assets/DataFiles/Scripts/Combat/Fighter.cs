@@ -11,7 +11,7 @@ namespace RPG.Combat
     {
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float weaponDamage = 20;
-        [SerializeField] float timeBetweenEffects =1f;
+        [SerializeField] float timeBetweenEffects =5f;
         Health _target;
 
         float timeSinceLastAttack = 0;
@@ -38,7 +38,7 @@ namespace RPG.Combat
             }
         }
 
-        private void StartAction(Health target)
+        public void StartAction(Health target)
         {
             GetComponent<ActionScheduler>().StartAction(this);
             Attack(target);
@@ -48,10 +48,19 @@ namespace RPG.Combat
 
         private void AttackBehaviour()
         {
-            if (timeSinceLastAttack > timeBetweenEffects) {
+            transform.LookAt(_target.transform);
+
+            if (timeSinceLastAttack > timeBetweenEffects)
+            {
                 timeSinceLastAttack = 0;
-                GetComponent<Animator>().SetTrigger("attack");
+                TriggerAttack();
             }
+        }
+
+        private void TriggerAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("stopAttack");
+            GetComponent<Animator>().SetTrigger("attack");
         }
 
         bool IsInRange()
@@ -72,12 +81,22 @@ namespace RPG.Combat
                 //Cancel();
         }
 
+        public bool CanAttack(GameObject target)
+        {
+            return target != null && target.GetComponent<Health>().GetIsAlive();            
+        }
         
 
         public void Cancel()
         {
-            GetComponent<Animator>().SetTrigger("stopAttack");
+            StopAttack();
             _target = null;
+        }
+
+        private void StopAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("attack");
+            GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
         void CheckIfAlive()
@@ -89,6 +108,8 @@ namespace RPG.Combat
         //Animation event
         void Hit()
         {
+            if (_target == null)
+                return;
             _target.GetComponent<Health>().TakeDamage(weaponDamage);
         }
     }

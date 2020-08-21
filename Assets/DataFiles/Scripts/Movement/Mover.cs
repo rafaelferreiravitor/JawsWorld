@@ -1,4 +1,5 @@
-﻿using RPG.Core;
+﻿using RPG.Combat;
+using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -38,29 +39,30 @@ namespace RPG.Movement
 
         private void FaceTarget()
         {
-            float speed = 100;
+            /*float speed = 100;
             Vector3 direction = (targetDestination - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * speed);*/
         }
 
 
 
         public void MoveTo(Vector3 destination, float stopRange = 0)
         {
+            if (!CanMove())
+                return;
 
             targetDestination = destination;
             navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
             navMeshAgent.SetDestination(destination);
-            FaceTarget();
-            /*if (stopRange > 0)
-            {
-                print("chamou!");
-                FaceTarget();
-            }*/
-            
         }
+
+        public bool CanMove()
+        {
+            return transform.GetComponent<Health>().GetIsAlive();
+        }
+
 
         public void StartAction(Vector3 destination, float stopRange = 0)
         {

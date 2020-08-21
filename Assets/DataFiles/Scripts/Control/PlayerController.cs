@@ -33,10 +33,13 @@ namespace RPG.Control
                     foreach (RaycastHit item in hits)
                     {
                         CombatTarget combatTarget = item.transform.GetComponent<CombatTarget>();
-                        
-                        if (combatTarget)
+
+                        if (combatTarget == null)
+                            continue;
+
+                        if (GetComponent<Fighter>().CanAttack(combatTarget.gameObject))
                         {
-                            GetComponent<Fighter>().Attack(combatTarget.GetComponent<Health>());
+                            GetComponent<Fighter>().Attack(combatTarget.gameObject.GetComponent<Health>());
                             //GetComponent<Mover>().StartAction(combatTarget.transform.position);
                             return true;
                         }
