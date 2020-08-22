@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-namespace RPG.Combat
+namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
@@ -25,6 +25,7 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().SetTrigger("die");
             isAlive = false;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
         public bool GetIsAlive()

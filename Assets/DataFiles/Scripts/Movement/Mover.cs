@@ -12,10 +12,12 @@ namespace RPG.Movement
 
         [SerializeField] Vector3 targetDestination;
         NavMeshAgent navMeshAgent;
+        Health health;
 
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = transform.GetComponent<Health>();
         }
 
         // Update is called once per frame
@@ -51,7 +53,7 @@ namespace RPG.Movement
         {
             if (!CanMove())
                 return;
-
+                
             targetDestination = destination;
             navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
@@ -60,7 +62,9 @@ namespace RPG.Movement
 
         public bool CanMove()
         {
-            return transform.GetComponent<Health>().GetIsAlive();
+            navMeshAgent.enabled = health.GetIsAlive();
+            return health.GetIsAlive();
+
         }
 
 
@@ -72,7 +76,8 @@ namespace RPG.Movement
 
         public void Cancel()
         {
-            navMeshAgent.isStopped = true;
+            if(navMeshAgent.enabled)
+                navMeshAgent.isStopped = true;
         }
     }
 }
