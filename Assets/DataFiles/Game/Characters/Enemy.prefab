@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  SuspiciousTime: 5
 --- !u!1001 &2305718318671522755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.36
+      value: 56.2
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -125,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.482376
+      value: 38.65
       objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -161,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6408740258165168014, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
