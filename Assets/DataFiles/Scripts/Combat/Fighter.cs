@@ -9,7 +9,7 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        [SerializeField] float weaponRange = 2f;
+        float weaponRange = 2f;
         [SerializeField] float weaponDamage = 20;
         [SerializeField] float timeBetweenEffects =5f;
         Health _target;
@@ -22,7 +22,7 @@ namespace RPG.Combat
             CheckIfAlive();
             if (_target != null)
             {
-                if (!IsInRange())
+                if (IsInRange() == false)
                 {
                     StartAction(_target);
                 }
@@ -40,9 +40,9 @@ namespace RPG.Combat
 
         public void StartAction(Health target)
         {
-            GetComponent<ActionScheduler>().StartAction(this);
+            //GetComponent<ActionScheduler>().StartAction(this);
             Attack(target);
-            GetComponent<Mover>().MoveTo(_target.transform.position, weaponRange);
+            GetComponent<Mover>().StartAction(_target.transform.position, weaponRange);
             
         }
 
@@ -55,6 +55,7 @@ namespace RPG.Combat
                 timeSinceLastAttack = 0;
                 TriggerAttack();
             }
+            //GetComponent<Mover>().MoveTo(_target.transform.position, weaponRange);
         }
 
         private void TriggerAttack()
@@ -101,8 +102,11 @@ namespace RPG.Combat
 
         void CheckIfAlive()
         {
-            if(_target?.GetComponent<Health>().GetIsAlive() == false)
+
+            if (_target?.GetComponent<Health>().GetIsAlive() == false)
+            {
                 Cancel();
+            }
         }
 
         //Animation event
