@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
-  SuspiciousTime: 5
+  patrolPath: {fileID: 0}
 --- !u!1001 &2305718318671522755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1721984166398349768, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: healthPoints
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1413031448, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_Enabled
