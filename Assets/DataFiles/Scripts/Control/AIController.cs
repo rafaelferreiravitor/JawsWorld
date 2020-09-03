@@ -21,6 +21,8 @@ namespace RPG.Control
         float waypointTolerance = 2f;
         float dwelingTime = 5f;
         float timeSinceLastDweling;
+        float patrolFractionSpeed = 0.2f;
+        float attackFractionSpeed = 0.7f;
 
         private void Start()
         {
@@ -57,7 +59,6 @@ namespace RPG.Control
         private void PatrolBehaviour()
         {
             Vector3 nextPosition = new Vector3();
-            
             if (patrolPath != null)
             {
                 if (AtWaypoint())
@@ -69,7 +70,7 @@ namespace RPG.Control
                 nextPosition = GetWaypoint();
             }
 
-            mover.StartAction(nextPosition);
+            mover.StartAction(nextPosition,patrolFractionSpeed);
         }
 
         private Vector3 GetWaypoint()
@@ -106,6 +107,8 @@ namespace RPG.Control
         private void AttackBehaviour()
         {
             fighter.StartAction(playerTarget.GetComponent<Health>());
+            mover.StartAction(playerTarget.GetComponent<Health>().transform.position, attackFractionSpeed);
+
             //fighter.Attack(playerTarget.GetComponent<Health>());
             timeSinceLastSawPlayer = Time.time;
         }

@@ -11,7 +11,7 @@ namespace RPG.Control
 
     public class PlayerController : MonoBehaviour
     {
-
+        float fractionSpeed = 1;
 
         // Update is called once per frame
         void Update()
@@ -45,7 +45,8 @@ namespace RPG.Control
                             return true;
                         }
                     }
-                    GetComponent<Mover>().StartAction(hits[0].point);
+                    GetComponent<Mover>().StartAction(hits[0].point,fractionSpeed);
+
                 }
             }
             return false;

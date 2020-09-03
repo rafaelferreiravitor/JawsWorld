@@ -42,7 +42,7 @@ namespace RPG.Combat
         {
             //GetComponent<ActionScheduler>().StartAction(this);
             Attack(target);
-            GetComponent<Mover>().StartAction(_target.transform.position, weaponRange);
+            //GetComponent<Mover>().StartAction(_target.transform.position, weaponRange);
             
         }
 

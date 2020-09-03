@@ -13,6 +13,7 @@ namespace RPG.Movement
         [SerializeField] Vector3 targetDestination;
         NavMeshAgent navMeshAgent;
         Health health;
+        float maximumSpeed = 6;
 
         void Start()
         {
@@ -49,11 +50,13 @@ namespace RPG.Movement
 
 
 
-        public void MoveTo(Vector3 destination, float stopRange = 0)
+        public void MoveTo(Vector3 destination, float fractionSpeed, float stopRange = 0)
         {
             if (!CanMove())
                 return;
-                
+
+            navMeshAgent.speed = maximumSpeed * fractionSpeed;
+            print(navMeshAgent.speed);
             targetDestination = destination;
             navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
@@ -68,10 +71,11 @@ namespace RPG.Movement
         }
 
 
-        public void StartAction(Vector3 destination, float stopRange = 0)
+        public void StartAction(Vector3 destination, float fractionSpeed, float stopRange = 0)
         {
+            
             GetComponent<ActionScheduler>().StartAction(this);
-            MoveTo(destination, stopRange);
+            MoveTo(destination,fractionSpeed, stopRange);
         }
 
         public void Cancel()
