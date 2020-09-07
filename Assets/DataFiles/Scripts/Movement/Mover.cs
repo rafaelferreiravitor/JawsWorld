@@ -56,7 +56,6 @@ namespace RPG.Movement
                 return;
 
             navMeshAgent.speed = maximumSpeed * fractionSpeed;
-            print(navMeshAgent.speed);
             targetDestination = destination;
             navMeshAgent.isStopped = false;
             navMeshAgent.stoppingDistance = stopRange;
