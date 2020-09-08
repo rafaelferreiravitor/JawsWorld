@@ -24,6 +24,7 @@ namespace RPG.Combat
             {
                 if (IsInRange() == false)
                 {
+                    //GetComponent<Mover>().StartAction(_target.transform.position,1f,weaponDamage);
                     StartAction(_target);
                 }
                 else
@@ -91,6 +92,7 @@ namespace RPG.Combat
         public void Cancel()
         {
             StopAttack();
+            GetComponent<Mover>().Cancel();
             _target = null;
         }
 

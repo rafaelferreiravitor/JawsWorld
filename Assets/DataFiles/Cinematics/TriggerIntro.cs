@@ -4,16 +4,19 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class TriggerIntro : MonoBehaviour
+namespace RPG.Cinematics
 {
-    bool firstTime = true;
-    private void OnTriggerEnter(Collider other)
+
+    public class TriggerIntro : MonoBehaviour
     {
-        if (other.CompareTag("Player") && firstTime)
+        bool firstTime = true;
+        private void OnTriggerEnter(Collider other)
         {
-            GetComponent<PlayableDirector>().Play();
-            firstTime = false;
-            print("dasda");
+            if (other.CompareTag("Player") && firstTime)
+            {
+                GetComponent<PlayableDirector>().Play();
+                firstTime = false;
+            }
         }
     }
 }
