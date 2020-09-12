@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Sandbox2
   PlayerSpawnPosition: {fileID: 5467389115229234017}
+  id: 0
 --- !u!1 &5467389115229234017
 GameObject:
   m_ObjectHideFlags: 0
