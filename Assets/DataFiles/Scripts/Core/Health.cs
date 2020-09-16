@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RPG.Saving;
 
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour,ISaveable
     {
         [SerializeField] float healthPoints = 100f;
         bool isAlive = true;
@@ -15,10 +15,15 @@ namespace RPG.Core
             if (isAlive)
             {
                 healthPoints = Mathf.Max(healthPoints - damage, 0);
-                if (healthPoints == 0)
-                    Die();
+                CheckIfAlive();
             }
 
+        }
+
+        private void CheckIfAlive()
+        {
+            if (healthPoints == 0)
+                Die();
         }
 
         public void Die()
@@ -31,6 +36,17 @@ namespace RPG.Core
         public bool GetIsAlive()
         {
             return isAlive;
+        }
+
+        public object CaptureState()
+        {
+            return healthPoints;
+        }
+
+        public void RestoreState(object state)
+        {
+            healthPoints = (float) state;
+            CheckIfAlive();
         }
     }
 

@@ -39,21 +39,20 @@ namespace RPG.SceneManagement
             Portal[] portals = FindObjectsOfType<Portal>();
             foreach (var item in portals)
             {
-                if (item.sceneName == sceneName)
+                if (id == item.id)
                 {
-                    if (id == item.id)
-                    {
-                        //print(item.PlayerSpawnPosition.transform.position);
-                        var player = GameObject.FindGameObjectWithTag("Player");
+                    print(item.PlayerSpawnPosition.transform.position);
+                    var player = GameObject.FindGameObjectWithTag("Player");
 
-                        //STILL NEED TO IMPLEMENT THE TELEPORT TO POSITION IT IS NOT WORKING!!!!!!
+                    //STILL NEED TO IMPLEMENT THE TELEPORT TO POSITION IT IS NOT WORKING!!!!!!
 
-                        //player.GetComponent<NavMeshAgent>().enabled = true;
-                        //player.GetComponent<NavMeshAgent>().Warp(item.PlayerSpawnPosition.transform.position);
-                        //player.transform.position = item.PlayerSpawnPosition.transform.position;
-                    }
+                    //player.GetComponent<NavMeshAgent>().enabled = false;
+                    //player.GetComponent<NavMeshAgent>().Warp(item.PlayerSpawnPosition.transform.position);
+                    //player.transform.position = item.PlayerSpawnPosition.transform.position;
+                    //player.GetComponent<NavMeshAgent>().enabled = true;
                     break;
                 }
+                
             }
 
             yield return new WaitForSeconds(fadeWaitTime);

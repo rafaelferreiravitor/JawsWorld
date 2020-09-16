@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2899428471371538223}
   - component: {fileID: 5574953291980269878}
   - component: {fileID: -1721984166398349768}
+  - component: {fileID: 4069723672178737294}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -111,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9441638b1d5b856408fa5e9bce4e2cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
   weaponDamage: 20
   timeBetweenEffects: 1
 --- !u!114 &5574953291980269878
@@ -138,4 +138,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ca800d4ed7b8649a4aa157d8ed7458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  healthPoints: 100
+--- !u!114 &4069723672178737294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408740258165168014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
