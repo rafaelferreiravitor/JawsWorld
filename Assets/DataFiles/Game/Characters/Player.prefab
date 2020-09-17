@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: timeBetweenEffects
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4069723672178737294, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
+      propertyPath: uniqueIdentifier
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 6408740258165168014, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_Name
       value: Player

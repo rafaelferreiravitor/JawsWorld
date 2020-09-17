@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UIElements;
 
 namespace RPG.SceneManagement
 {
@@ -33,31 +33,44 @@ namespace RPG.SceneManagement
            DontDestroyOnLoad(gameObject);
             Fader fader = FindObjectOfType<Fader>();
             
-            yield return fader.FadeOut(fadeInTime);
+            yield return fader.FadeOut(fadeOutTime);
+            SavingWraper savingWraper = FindObjectOfType<SavingWraper>();
+            savingWraper.Save();
+
             yield return SceneManager.LoadSceneAsync(sceneName);
+            savingWraper.Load();
+
             
-            Portal[] portals = FindObjectsOfType<Portal>();
-            foreach (var item in portals)
-            {
-                if (id == item.id)
-                {
-                    print(item.PlayerSpawnPosition.transform.position);
-                    var player = GameObject.FindGameObjectWithTag("Player");
-
-                    //STILL NEED TO IMPLEMENT THE TELEPORT TO POSITION IT IS NOT WORKING!!!!!!
-
-                    //player.GetComponent<NavMeshAgent>().enabled = false;
-                    //player.GetComponent<NavMeshAgent>().Warp(item.PlayerSpawnPosition.transform.position);
-                    //player.transform.position = item.PlayerSpawnPosition.transform.position;
-                    //player.GetComponent<NavMeshAgent>().enabled = true;
-                    break;
-                }
-                
-            }
-
+            
+            Portal otherPortal = GetOtherPortal();
+            UpdatePlayer(otherPortal);
+            savingWraper.Save();
             yield return new WaitForSeconds(fadeWaitTime);
+
+
+
             yield return fader.FadeIn(fadeOutTime);
             Destroy(gameObject);
+        }
+
+        private Portal GetOtherPortal()
+        {
+            foreach (Portal portal in FindObjectsOfType<Portal>())
+            {
+                if (portal == this) continue;
+                if (portal.id != id) continue;
+                return portal;
+            }
+            return null;
+        }
+
+        private void UpdatePlayer(Portal otherPortal)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            player.GetComponent<NavMeshAgent>().enabled = false;
+            player.transform.position = otherPortal.PlayerSpawnPosition.transform.position;
+            player.transform.rotation = otherPortal.PlayerSpawnPosition.transform.rotation;
+            player.GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 

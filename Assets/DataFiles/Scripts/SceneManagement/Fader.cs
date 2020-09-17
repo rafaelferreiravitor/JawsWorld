@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ namespace RPG.SceneManagement
         {
             canvasGroup = GetComponent<CanvasGroup>();
             //StartCoroutine(FadeOutIn());
+        }
+
+        public void FadeOutImmediately()
+        {
+            canvasGroup.alpha = 1;
         }
 
         public IEnumerator FadeOutIn()
