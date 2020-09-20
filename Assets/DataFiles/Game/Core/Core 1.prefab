@@ -64,7 +64,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702282052439340255, guid: 7cfda6b16a2ae5546b85477ce8d9ed67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.454407
+      value: 58.454403
       objectReference: {fileID: 0}
     - target: {fileID: 8702282052439340255, guid: 7cfda6b16a2ae5546b85477ce8d9ed67, type: 3}
       propertyPath: m_LocalPosition.y
@@ -72,7 +72,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702282052439340255, guid: 7cfda6b16a2ae5546b85477ce8d9ed67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.62796
+      value: 32.627956
       objectReference: {fileID: 0}
     - target: {fileID: 8702282052439340255, guid: 7cfda6b16a2ae5546b85477ce8d9ed67, type: 3}
       propertyPath: m_LocalRotation.x
@@ -132,6 +132,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5811683025018902860, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
+      propertyPath: weaponOverrideController
+      value: 
+      objectReference: {fileID: 22100000, guid: d88e9cafe9467bb42822270713e11426, type: 2}
+    - target: {fileID: 5811683025018902860, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
+      propertyPath: weaponPosition
+      value: 
+      objectReference: {fileID: 8705443684187993723}
+    - target: {fileID: 5811683025018902860, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 8650114856647743910, guid: a010df8a98ff8f549b7c018ff8927c89, type: 3}
     - target: {fileID: 7013448583250507836, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 54.367615
@@ -183,6 +195,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7013448583250507836, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
   m_PrefabInstance: {fileID: 6838517755338834900}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &8705443684187993723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2749651269204129199, guid: a8e65a3e2d1539c4eafded0442c63e59, type: 3}
+  m_PrefabInstance: {fileID: 6838517755338834900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9073613523354513973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,7 +209,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2525596652110659758, guid: dfecc6bca138c1f4e998cf187c7e25da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.454407
+      value: 58.454403
       objectReference: {fileID: 0}
     - target: {fileID: 2525596652110659758, guid: dfecc6bca138c1f4e998cf187c7e25da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -200,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525596652110659758, guid: dfecc6bca138c1f4e998cf187c7e25da, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 32.62796
+      value: 32.627956
       objectReference: {fileID: 0}
     - target: {fileID: 2525596652110659758, guid: dfecc6bca138c1f4e998cf187c7e25da, type: 3}
       propertyPath: m_LocalRotation.x
