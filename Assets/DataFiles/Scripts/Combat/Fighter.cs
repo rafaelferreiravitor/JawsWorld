@@ -11,12 +11,10 @@ namespace RPG.Combat
     {
         float weaponRange = 2f;
         [SerializeField] float weaponDamage = 20;
-        [SerializeField] float timeBetweenEffects =5f;
+        [SerializeField] float timeBetweenEffects = 5f;
         Health _target;
-        [SerializeField] GameObject weapon = null;
         [SerializeField] Transform weaponPosition = null;
-        [SerializeField] AnimatorOverrideController weaponOverrideController = null;
-
+        [SerializeField] Weapon weapon = null;
         float timeSinceLastAttack = Mathf.Infinity;
         private void Start()
         {
@@ -38,7 +36,7 @@ namespace RPG.Combat
                     //GetComponent<Mover>().Cancel();
                     AttackBehaviour();
                 }
-                
+
 
 
                 //GetComponent<ActionScheduler>().StartAction(this);
@@ -50,7 +48,7 @@ namespace RPG.Combat
             //GetComponent<ActionScheduler>().StartAction(this);
             Attack(target);
             //GetComponent<Mover>().StartAction(_target.transform.position, weaponRange);
-            
+
         }
 
         private void AttackBehaviour()
@@ -86,14 +84,14 @@ namespace RPG.Combat
             if (target != null)
                 _target = target;
             //else
-                //Cancel();
+            //Cancel();
         }
 
         public bool CanAttack(GameObject target)
         {
-            return target != null && target.GetComponent<Health>().GetIsAlive();            
+            return target != null && target.GetComponent<Health>().GetIsAlive();
         }
-        
+
 
         public void Cancel()
         {
@@ -127,9 +125,8 @@ namespace RPG.Combat
 
         public void SpawnWeapon()
         {
-            Instantiate<GameObject>(weapon, weaponPosition);
-            Animator animator = GetComponent<Animator>();
-            animator.runtimeAnimatorController = weaponOverrideController;
+            if (weapon == null) return;
+            weapon.Spawn(weaponPosition, GetComponent<Animator>());
         }
     }
 }
