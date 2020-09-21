@@ -9,8 +9,6 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        float weaponRange = 2f;
-        [SerializeField] float weaponDamage = 20;
         [SerializeField] float timeBetweenEffects = 5f;
         Health _target;
         [SerializeField] Transform weaponPosition = null;
@@ -73,7 +71,7 @@ namespace RPG.Combat
         {
             if (_target != null)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) <= weaponRange)
+                if (Vector3.Distance(transform.position, _target.transform.position) <= weapon.GetWeaponRange())
                     return true;
             }
             return false;
@@ -120,7 +118,7 @@ namespace RPG.Combat
         {
             if (_target == null)
                 return;
-            _target.GetComponent<Health>().TakeDamage(weaponDamage);
+            _target.GetComponent<Health>().TakeDamage(weapon.GetWeaponDamage());
         }
 
         public void SpawnWeapon()

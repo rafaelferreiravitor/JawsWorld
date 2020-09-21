@@ -7,12 +7,29 @@ namespace RPG.Combat
     {
 
         [SerializeField] AnimatorOverrideController weaponOverrideController = null;
-        [SerializeField] GameObject weapon = null;
+        [SerializeField] GameObject EquippedPrefab = null;
+        [SerializeField] float weaponRange = 2f;
+        [SerializeField] float weaponDamage = 20;
+
+        public float GetWeaponDamage()
+        {
+            return weaponDamage;
+        }
+        public float GetWeaponRange()
+        {
+            return weaponRange;
+        }
 
         public void Spawn(Transform handTransform, Animator animator)
         {
-            Instantiate(weapon, handTransform);
-            animator.runtimeAnimatorController = weaponOverrideController;
+            if (EquippedPrefab != null)
+            {
+                Instantiate(EquippedPrefab, handTransform);
+            }
+            if (weaponOverrideController != null)
+            {
+                animator.runtimeAnimatorController = weaponOverrideController;
+            }
         }
     }
 }
