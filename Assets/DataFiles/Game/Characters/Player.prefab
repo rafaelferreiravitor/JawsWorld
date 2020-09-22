@@ -168,6 +168,14 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: bf32e5049c23b8d4cbf5becc715e6ce8, type: 2}
+    - target: {fileID: 2899428471371538223, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 23d7f6735281dbe4b950f5d2f26d4f92, type: 2}
+    - target: {fileID: 2899428471371538223, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 23d7f6735281dbe4b950f5d2f26d4f92, type: 2}
     - target: {fileID: 4069723672178737294, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: uniqueIdentifier
       value: player

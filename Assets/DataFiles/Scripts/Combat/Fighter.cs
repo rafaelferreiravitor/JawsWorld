@@ -12,11 +12,16 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenEffects = 5f;
         Health _target;
         [SerializeField] Transform weaponPosition = null;
-        [SerializeField] Weapon weapon = null;
+        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] Weapon currentWeapon = null;
         float timeSinceLastAttack = Mathf.Infinity;
+
+
+
+
         private void Start()
         {
-            SpawnWeapon();
+            EquipWeapon(defaultWeapon);
         }
         private void Update()
         {
@@ -71,7 +76,7 @@ namespace RPG.Combat
         {
             if (_target != null)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) <= weapon.GetWeaponRange())
+                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeapon.GetWeaponRange())
                     return true;
             }
             return false;
@@ -118,12 +123,12 @@ namespace RPG.Combat
         {
             if (_target == null)
                 return;
-            _target.GetComponent<Health>().TakeDamage(weapon.GetWeaponDamage());
+            _target.GetComponent<Health>().TakeDamage(currentWeapon.GetWeaponDamage());
         }
 
-        public void SpawnWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if (weapon == null) return;
+            currentWeapon = weapon;
             weapon.Spawn(weaponPosition, GetComponent<Animator>());
         }
     }
