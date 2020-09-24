@@ -1046,7 +1046,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246130338}
-  m_LocalRotation: {x: -0.08567333, y: 0.87319535, z: -0.16621822, w: -0.45006832}
+  m_LocalRotation: {x: -0.085673325, y: 0.87319535, z: -0.16621824, w: -0.45006827}
   m_LocalPosition: {x: -41.611473, y: -10.614807, z: -36.027775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2063,31 +2063,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838517755883594757, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_CameraDistance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756083785175, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.411007
+      value: 58.454403
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756083785175, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.11683
+      value: 32.627956
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756083785175, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56.66937
+      value: 60.494293
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756833378971, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.411007
+      value: 58.454403
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756833378971, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.11683
+      value: 32.627956
       objectReference: {fileID: 0}
     - target: {fileID: 6838517756833378971, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56.66937
+      value: 60.494293
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be45d44163d84f546877e24b753d0011, type: 3}

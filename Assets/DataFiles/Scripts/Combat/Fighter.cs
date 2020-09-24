@@ -35,7 +35,7 @@ namespace RPG.Combat
                     //GetComponent<Mover>().StartAction(_target.transform.position,1f,weaponDamage);
                     StartAction(_target);
                 }
-                else
+                else 
                 {
                     //GetComponent<Mover>().Cancel();
                     AttackBehaviour();

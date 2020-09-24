@@ -31,7 +31,7 @@ namespace RPG.Combat
         public void LunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
             Projectile projectileInstance = Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget(target);
+            projectileInstance.SetTarget(target,weaponDamage);
         }
 
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
