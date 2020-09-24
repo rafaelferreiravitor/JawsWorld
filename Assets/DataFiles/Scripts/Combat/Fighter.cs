@@ -124,7 +124,19 @@ namespace RPG.Combat
         {
             if (_target == null)
                 return;
-            _target.GetComponent<Health>().TakeDamage(currentWeapon.GetWeaponDamage());
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target);
+            }
+            else
+            {
+                _target.GetComponent<Health>().TakeDamage(currentWeapon.GetWeaponDamage());
+            }
+        }
+
+        void Shoot()
+        {
+            Hit();
         }
 
         public void EquipWeapon(Weapon weapon)

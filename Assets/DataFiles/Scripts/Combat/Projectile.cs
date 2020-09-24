@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RPG.Core;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
@@ -6,11 +7,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 0.01f;
-    GameObject player;
+    Health target;
     
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         transform.LookAt(GetAimLocation());
     }
 
@@ -20,13 +20,18 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.forward*speed*Time.deltaTime);
     }
 
+    public void SetTarget(Health target)
+    {
+        this.target = target;
+    }
+
     public Vector3 GetAimLocation()
     {
-        CapsuleCollider collider = player.GetComponent<CapsuleCollider>();
+        CapsuleCollider collider = target.GetComponent<CapsuleCollider>();
         if(collider != null)
         {
-            return player.transform.position /*+ Vector3.up * collider.height/2*/;
+            return target.transform.position /*+ Vector3.up * collider.height/2*/;
         }
-        return player.transform.position;
+        return target.transform.position;
     }
 }
