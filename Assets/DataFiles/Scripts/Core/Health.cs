@@ -28,6 +28,7 @@ namespace RPG.Core
 
         public void Die()
         {
+            //GetComponent<Collider>().enabled = false;
             GetComponent<Animator>().SetTrigger("die");
             isAlive = false;
             GetComponent<ActionScheduler>().CancelCurrentAction();

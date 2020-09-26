@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 189474714, guid: 869c3e1f0f8586043917e6f77714adcf, type: 3}
+      propertyPath: homing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1668039304662589803, guid: 869c3e1f0f8586043917e6f77714adcf, type: 3}
       propertyPath: m_Name
       value: BlueArrow
