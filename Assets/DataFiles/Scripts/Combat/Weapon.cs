@@ -44,6 +44,8 @@ namespace RPG.Combat
             Transform handTransform;
             handTransform = GetTransform(rightHand, leftHand);
 
+            var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
             if (EquippedPrefab != null)
             {
                 GameObject weapon = Instantiate(EquippedPrefab, handTransform);
@@ -52,6 +54,10 @@ namespace RPG.Combat
             if (weaponOverrideController != null)
             {
                 animator.runtimeAnimatorController = weaponOverrideController;
+            }
+            else if (overrideController != null)
+            {
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
         }
 
