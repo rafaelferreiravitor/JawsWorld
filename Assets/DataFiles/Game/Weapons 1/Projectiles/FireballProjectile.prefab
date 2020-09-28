@@ -4919,6 +4919,10 @@ MonoBehaviour:
   speed: 10
   homing: 0
   hitFX: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
+  maxLifetime: 5
+  destroyOrder:
+  - {fileID: 1414964601789651607}
+  timeToDestroy: 0.1
 --- !u!65 &3589400148348025580
 BoxCollider:
   m_ObjectHideFlags: 0
