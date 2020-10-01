@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Unarmed
   m_EditorClassIdentifier: 
   weaponOverrideController: {fileID: 0}
-  weapon: {fileID: 0}
+  EquippedPrefab: {fileID: 0}
   weaponRange: 2
   weaponDamage: 20
+  isRightHanded: 1
+  projectile: {fileID: 0}
