@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPG.Combat;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,7 +21,6 @@ namespace RPG.Resources
         void Update()
         {
             GetComponent<TextMeshProUGUI>().text = String.Format("{0:0}%", health.GetPercentage().ToString());
-            print(health.GetPercentage().ToString() + "%");
         }
     }
 }

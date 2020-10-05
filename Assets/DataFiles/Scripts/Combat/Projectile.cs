@@ -16,6 +16,7 @@ namespace RPG.Combat
         [SerializeField] GameObject[] destroyOrder;
         [SerializeField] float timeToDestroy = 0.1f;
         Health target;
+        GameObject instigator;
         float damage = 0;
 
         void Start()
@@ -34,8 +35,9 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(GameObject instigator,Health target, float damage)
         {
+            this.instigator = instigator;
             this.target = target;
             this.damage = damage;
 
@@ -56,7 +58,7 @@ namespace RPG.Combat
         {
             if (other.GetComponent<Health>() != target) return;
             if (!target.GetIsAlive()) return;
-            other.GetComponent<Health>().TakeDamage(damage);
+            other.GetComponent<Health>().TakeDamage(instigator,damage);
             if (hitFX != null)
             {
                 Instantiate(hitFX, GetAimLocation(), transform.rotation);

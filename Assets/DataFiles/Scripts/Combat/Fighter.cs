@@ -19,7 +19,10 @@ namespace RPG.Combat
         [SerializeField] Weapon currentWeapon = null;
         float timeSinceLastAttack = Mathf.Infinity;
 
-
+        public Health GetTarget()
+        {
+            return _target;
+        }
 
 
         private void Start()
@@ -131,11 +134,11 @@ namespace RPG.Combat
                 return;
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target);
+                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject);
             }
             else
             {
-                _target.GetComponent<Health>().TakeDamage(currentWeapon.GetWeaponDamage());
+                _target.GetComponent<Health>().TakeDamage(gameObject,currentWeapon.GetWeaponDamage());
             }
         }
 
