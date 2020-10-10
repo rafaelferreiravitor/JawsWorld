@@ -12,6 +12,40 @@ namespace RPG.Stats
         [SerializeField] int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
+        
+        int currentLevel = 0;
+
+
+        private void Start()
+        {
+            currentLevel = CalculateLevel();
+            Experience experience = GetComponent<Experience>();
+            if (experience != null)
+            {
+                experience.onExperienceGained += UpdateLevel;
+
+            }
+        }
+
+        private void UpdateLevel()
+        {
+            int newLevel = CalculateLevel();
+            if (newLevel > currentLevel)
+            {
+                currentLevel = newLevel;
+                print("Levelled Up!");
+            }
+        }
+
+        private void Update()
+        {
+            int newLevel = CalculateLevel();
+            if(newLevel > currentLevel)
+            {
+                currentLevel = newLevel;
+                print("Levelup");
+            }
+        }
 
         public float GetStat(Stat stat)
         {
@@ -19,6 +53,15 @@ namespace RPG.Stats
         }
 
         public int GetLevel()
+        {
+            if(currentLevel < 1)
+            {
+                currentLevel = CalculateLevel();
+            }
+            return currentLevel;
+        }
+
+        public int CalculateLevel()
         {
             Experience experience = GetComponent<Experience>();
             if (experience == null) return startingLevel;
@@ -33,10 +76,6 @@ namespace RPG.Stats
             }
             return level;
         }
-        private void Update()
-        {
-            if(gameObject.tag == "Player")
-                print(GetLevel());
-        }
+
     }
 }
