@@ -2,6 +2,7 @@
 using RPG.Movement;
 using RPG.Resources;
 using RPG.Saving;
+using RPG.Stats;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -132,13 +133,15 @@ namespace RPG.Combat
         {
             if (_target == null)
                 return;
+            
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject);
+                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject,damage);
             }
             else
             {
-                _target.GetComponent<Health>().TakeDamage(gameObject,currentWeapon.GetWeaponDamage());
+                _target.GetComponent<Health>().TakeDamage(gameObject,damage);
             }
         }
 

@@ -11,10 +11,9 @@ namespace RPG.SceneManagement
 
         public CanvasGroup canvasGroup;
 
-        public void Start()
+        private void Awake()
         {
             canvasGroup = GetComponent<CanvasGroup>();
-            //StartCoroutine(FadeOutIn());
         }
 
         public void FadeOutImmediately()
