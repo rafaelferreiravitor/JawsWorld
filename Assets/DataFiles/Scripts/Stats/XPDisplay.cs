@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace RPG.Resources
+namespace RPG.Stats
 {
     public class XPDisplay : MonoBehaviour
     {

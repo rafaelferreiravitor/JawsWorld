@@ -2255,6 +2255,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2847143080374271477, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2847143080374271477, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2847143080374271477, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2847143080374271477, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6838517755669226157, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_Name
       value: Core
@@ -2368,6 +2384,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6912069239345018205, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273458173235924719, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273458173235924719, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273458173235924719, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273458173235924719, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
