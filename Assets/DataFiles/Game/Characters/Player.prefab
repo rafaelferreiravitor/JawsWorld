@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: levelUpFX
       value: 
       objectReference: {fileID: 5264291130555799804, guid: c85fdacbfd358024193942080584b936, type: 3}
+    - target: {fileID: 456556486473412374, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
+      propertyPath: shouldUseModifiers
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1859756219056963167, guid: 6d5b124bacdaba04898a2a7e72c6147d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 54.367615

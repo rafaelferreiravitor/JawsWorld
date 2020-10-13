@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using RPG.Core;
 using System;
 using RPG.Resources;
+using GameDevTV.Utils;
 
 namespace RPG.Control
 {
@@ -24,16 +25,29 @@ namespace RPG.Control
         float timeSinceLastDweling;
         float patrolFractionSpeed = 0.2f;
         float attackFractionSpeed = 0.7f;
+        LazyValue<Vector3> guardposition;
 
-        private void Start()
+        private void Awake()
         {
             timeSinceLastSawPlayer = Time.time;
             timeSinceLastDweling = Time.time;
+            mover = GetComponent<Mover>();
             playerTarget = GameObject.FindWithTag("Player");
             fighter = GetComponent<Fighter>();
+            guardposition = new LazyValue<Vector3>(GetGuardPosition);
+        }
+
+        private Vector3 GetGuardPosition()
+        {
+            return patrolPath.GetWaypoint(currentWaypointIndex);
+        }
+
+        private void Start()
+        {
             //startPosition = patrolPath.GetChildPosition(0);
-            transform.position = patrolPath.GetWaypoint(currentWaypointIndex);
-            mover = GetComponent<Mover>();
+            guardposition.ForceInit();
+            transform.position = guardposition.value;
+
         }
 
         private void Update()

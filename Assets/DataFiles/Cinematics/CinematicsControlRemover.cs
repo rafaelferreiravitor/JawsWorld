@@ -14,12 +14,23 @@ namespace RPG.Cinematics
     {
         GameObject player;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        private void OnEnable()
         {
             GetComponent<PlayableDirector>().played += DisableControl;
             GetComponent<PlayableDirector>().stopped += EnableControl;
             GetComponent<FakeAction>().TargetPos += ListenEvent;
+        }
 
+        private void OnDisable()
+        {
+            GetComponent<PlayableDirector>().played -= DisableControl;
+            GetComponent<PlayableDirector>().stopped -= EnableControl;
+            GetComponent<FakeAction>().TargetPos -= ListenEvent;
         }
 
         public void ListenEvent(Vector3 target)
@@ -29,7 +40,6 @@ namespace RPG.Cinematics
 
         public void DisableControl(PlayableDirector playableDirector)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<ActionScheduler>().CancelCurrentAction();
             player.GetComponent<PlayerController>().enabled = false;
         }

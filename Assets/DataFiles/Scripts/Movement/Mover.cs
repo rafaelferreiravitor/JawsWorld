@@ -19,7 +19,7 @@ namespace RPG.Movement
         float maximumSpeed = 6;
 
         
-        void Start()
+        void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = transform.GetComponent<Health>();

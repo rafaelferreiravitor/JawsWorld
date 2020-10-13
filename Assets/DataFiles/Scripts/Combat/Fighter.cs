@@ -1,8 +1,10 @@
-﻿using RPG.Core;
+﻿using GameDevTV.Utils;
+using RPG.Core;
 using RPG.Movement;
 using RPG.Resources;
 using RPG.Saving;
 using RPG.Stats;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,28 +12,37 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         [SerializeField] float timeBetweenEffects = 5f;
         Health _target;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
-        [SerializeField] Weapon currentWeapon = null;
+        //[SerializeField] Weapon currentWeapon = null;
         float timeSinceLastAttack = Mathf.Infinity;
+
+        LazyValue<Weapon> currentWeapon;
 
         public Health GetTarget()
         {
             return _target;
         }
 
+        private void Awake()
+        {
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+        }
+
+        private Weapon SetupDefaultWeapon()
+        {
+            AttachWeapon(defaultWeapon);
+            return defaultWeapon;
+        }
 
         private void Start()
         {
-            if (currentWeapon == null)
-            {
-                EquipWeapon(defaultWeapon);
-            }
+            currentWeapon.ForceInit();
         }
         private void Update()
         {
@@ -86,7 +97,7 @@ namespace RPG.Combat
         {
             if (_target != null)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeapon.GetWeaponRange())
+                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeapon.value.GetWeaponRange())
                     return true;
             }
             return false;
@@ -135,9 +146,9 @@ namespace RPG.Combat
                 return;
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            if (currentWeapon.HasProjectile())
+            if (currentWeapon.value.HasProjectile())
             {
-                currentWeapon.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject,damage);
+                currentWeapon.value.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject,damage);
             }
             else
             {
@@ -152,13 +163,18 @@ namespace RPG.Combat
 
         public void EquipWeapon(Weapon weapon)
         {
-            currentWeapon = weapon;
-            weapon.Spawn(rightHandTransform,leftHandTransform, GetComponent<Animator>());
+            currentWeapon.value = weapon;
+            AttachWeapon(weapon);
+        }
+
+        private void AttachWeapon(Weapon weapon)
+        {
+            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
         }
 
         public object CaptureState()
         {
-            return currentWeapon.name;
+            return currentWeapon.value.name;
         }
 
         public void RestoreState(object state)
@@ -166,6 +182,22 @@ namespace RPG.Combat
             string weaponName = (string)state;
             Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
+        }
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.value.GetWeaponDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.value.GetPercentageBonus();
+            }
         }
     }
 }
