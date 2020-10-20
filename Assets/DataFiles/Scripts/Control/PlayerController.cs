@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
 using RPG.Resources;
+using UnityEngine.EventSystems;
 
 namespace RPG.Control
 {
@@ -18,7 +19,8 @@ namespace RPG.Control
         {
             None,
             Movement,
-            Combat
+            Combat,
+            UI
         }
 
         [System.Serializable]
@@ -35,13 +37,55 @@ namespace RPG.Control
         // Update is called once per frame
         void Update()
         {
-            if (InteractWithCursorClick())
-                return;
+            if (InteractWithComponent()) return;
+            if (InteractWithUI()) return;
+            //if (InteractWithCursorClick())
+            //    return;
+            if(InteractWithMovement()) return;
             SetCursor(CursorType.None);
             /*else if (InteractWithMovement())
                 return;
             */
 
+        }
+
+        private bool InteractWithMovement()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            if (Input.GetMouseButton(0))
+            {
+                GetComponent<Mover>().StartAction(hits[0].point, fractionSpeed);
+                return true;
+            }
+            return false;
+        }
+
+        private bool InteractWithComponent()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (RaycastHit hit in hits)
+            {
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (IRaycastable raycastable in raycastables)
+                {
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetCursor(CursorType.Combat);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.UI);
+                return true;
+            }
+            return false;
         }
 
         private bool InteractWithCursorClick()
