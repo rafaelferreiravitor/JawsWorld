@@ -109,6 +109,7 @@ namespace RPG.Combat
                 _target = target;
             //else
             //Cancel();
+
         }
 
         public bool CanAttack(GameObject target)

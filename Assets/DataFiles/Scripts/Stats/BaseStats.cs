@@ -110,7 +110,7 @@ namespace RPG.Stats
 
         public int GetLevel()
         {
-            return currentLevel.value-1;
+            return currentLevel.value+1;
         }
 
         public int CalculateLevel()
