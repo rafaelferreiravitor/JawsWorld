@@ -6,6 +6,7 @@ using RPG.Core;
 using RPG.Stats;
 using System;
 using GameDevTV.Utils;
+using UnityEngine.Events;
 
 namespace RPG.Resources
 {
@@ -13,6 +14,8 @@ namespace RPG.Resources
     {
         [SerializeField] float PercentageRegenerate = 70f;
         bool isAlive = true;
+
+        [SerializeField] UnityEvent takeDamage;
 
         LazyValue<float> healthPoints;
         private void Awake()
@@ -50,6 +53,7 @@ namespace RPG.Resources
         public void TakeDamage(GameObject instigator,float damage)
         {
             print(gameObject.name + "took damage: " + damage);
+            
             if (isAlive)
             {
                 healthPoints.value = Mathf.Max(healthPoints.value - damage, 0);
@@ -60,7 +64,10 @@ namespace RPG.Resources
                 Die();
                 AwardExperience(instigator);
             }
-
+            else
+            {
+                takeDamage.Invoke();
+            }
         }
 
         public float GetHealthPoints()

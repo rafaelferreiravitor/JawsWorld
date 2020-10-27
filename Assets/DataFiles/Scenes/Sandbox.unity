@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 855875873}
-  m_PathPosition: 1
+  m_PathPosition: 3
   m_PositionUnits: 0
   m_PathOffset: {x: -0.6838505, y: 2.2404206, z: 2.623794}
   m_XDamping: 0
@@ -1098,7 +1098,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246130338}
-  m_LocalRotation: {x: -0.085673325, y: 0.87319535, z: -0.16621824, w: -0.45006827}
+  m_LocalRotation: {x: -0.08567333, y: 0.87319535, z: -0.16621822, w: -0.45006832}
   m_LocalPosition: {x: -41.611473, y: -10.614807, z: -36.027775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2628,6 +2628,14 @@ PrefabInstance:
     - target: {fileID: 2847143080374271477, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344114076281012508, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344114076281012508, guid: be45d44163d84f546877e24b753d0011, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6838517755669226157, guid: be45d44163d84f546877e24b753d0011, type: 3}
       propertyPath: m_Name
