@@ -11,13 +11,14 @@ namespace RPG.SceneManagement
     {
         private void Awake()
         {
+            print(Application.persistentDataPath);
             StartCoroutine(LoadLastScene());
         }
         private IEnumerator LoadLastScene()
         {
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
             Fader fader = FindObjectOfType<Fader>();
-            fader.FadeOutImmediately();
+            fader.FadeOutImmediate();
             yield return fader.FadeIn(1f);
         }
         
