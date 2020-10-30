@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BowRedProjectile
   m_EditorClassIdentifier: 
   weaponOverrideController: {fileID: 22100000, guid: 5b1c83412df02fc4cb9eabc1b2eba08f, type: 2}
-  EquippedPrefab: {fileID: 6794763984598082451, guid: 1dc866494dba8704eb95720e59ee1dcd, type: 3}
+  EquippedPrefab: {fileID: 82931140741767967, guid: 1dc866494dba8704eb95720e59ee1dcd, type: 3}
   weaponRange: 20
   weaponDamage: 5
+  percentageBonus: 0
   isRightHanded: 0
   projectile: {fileID: 633893193653071490, guid: e5e1013cdc63d844b85c203724d7efb8, type: 3}

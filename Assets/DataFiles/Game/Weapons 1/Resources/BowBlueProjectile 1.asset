@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: BowBlueProjectile 1
   m_EditorClassIdentifier: 
   weaponOverrideController: {fileID: 22100000, guid: 5b1c83412df02fc4cb9eabc1b2eba08f, type: 2}
-  EquippedPrefab: {fileID: 6794763984598082451, guid: 1dc866494dba8704eb95720e59ee1dcd, type: 3}
+  EquippedPrefab: {fileID: 82931140741767967, guid: 1dc866494dba8704eb95720e59ee1dcd, type: 3}
   weaponRange: 20
   weaponDamage: 5
+  percentageBonus: 0
   isRightHanded: 0
   projectile: {fileID: 1527134023377067990, guid: eb78cbf0016eaf4429aadc22c8f73031, type: 3}

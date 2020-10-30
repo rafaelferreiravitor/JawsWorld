@@ -16,7 +16,7 @@ namespace RPG.Attributes
         bool isAlive = true;
 
         [SerializeField] UnityEvent<float> takeDamage;
-
+        [SerializeField] UnityEvent onDie;
 
         LazyValue<float> healthPoints;
         private void Awake()
@@ -62,6 +62,7 @@ namespace RPG.Attributes
             }
             if (healthPoints.value == 0)
             {
+                
                 Die();
                 AwardExperience(instigator);
             }
@@ -98,6 +99,7 @@ namespace RPG.Attributes
 
         public void Die()
         {
+            onDie.Invoke();
             //GetComponent<Collider>().enabled = false;
             GetComponent<Animator>().SetTrigger("die");
             isAlive = false;

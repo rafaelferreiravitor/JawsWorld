@@ -56,7 +56,7 @@ namespace RPG.SceneManagement
 
 
 
-            yield return fader.FadeIn(fadeOutTime);
+            fader.FadeIn(fadeOutTime);
             newPlayerController.enabled = true;
             Destroy(gameObject);
         }

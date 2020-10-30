@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Combat
 {
@@ -19,8 +20,13 @@ namespace RPG.Combat
         GameObject instigator;
         float damage = 0;
 
+        [SerializeField] UnityEvent onLaunch;
+        [SerializeField] UnityEvent onHit;
+
+
         void Start()
         {
+            onLaunch.Invoke();
             transform.LookAt(GetAimLocation());
         }
 
@@ -62,6 +68,7 @@ namespace RPG.Combat
             if (hitFX != null)
             {
                 Instantiate(hitFX, GetAimLocation(), transform.rotation);
+                onHit.Invoke();
             }
             speed = 0;
 
