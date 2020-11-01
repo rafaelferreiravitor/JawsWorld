@@ -53,7 +53,7 @@ namespace RPG.Attributes
 
         public void TakeDamage(GameObject instigator,float damage)
         {
-            print(gameObject.name + "took damage: " + damage);
+            //print(gameObject.name + "took damage: " + damage);
             
             if (isAlive)
             {
@@ -131,6 +131,13 @@ namespace RPG.Attributes
         {
             return healthPoints.value / GetComponent<BaseStats>().GetStat(Stat.Health);
         }
+
+        public void Heal(float healPointsToAdd)
+        {
+            healthPoints.value = Mathf.Min(healthPoints.value + healPointsToAdd, GetMaxHealthPoints());
+        }
     }
+
+
 
 }

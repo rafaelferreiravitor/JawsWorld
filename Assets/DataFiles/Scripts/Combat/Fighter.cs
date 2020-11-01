@@ -8,7 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RPG.Control;
 
 namespace RPG.Combat
 {
@@ -22,7 +22,8 @@ namespace RPG.Combat
         //[SerializeField] Weapon currentWeapon = null;
         float timeSinceLastAttack = Mathf.Infinity;
 
-        LazyValue<WeaponConfig> currentWeapon;
+        WeaponConfig currentWeaponConfig;
+        LazyValue<Weapon> currentWeapon;
 
         public Health GetTarget()
         {
@@ -31,21 +32,24 @@ namespace RPG.Combat
 
         private void Awake()
         {
-            currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
+            currentWeaponConfig = defaultWeapon;
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
-        private WeaponConfig SetupDefaultWeapon()
+        private Weapon SetupDefaultWeapon()
         {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            return AttachWeapon(defaultWeapon);
         }
 
         private void Start()
         {
+
+            //AttachWeapon(currentWeaponConfig);
             currentWeapon.ForceInit();
         }
         private void Update()
         {
+            
             timeSinceLastAttack += Time.deltaTime;
             CheckIfAlive();
             if (_target != null)
@@ -97,7 +101,7 @@ namespace RPG.Combat
         {
             if (_target != null)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeapon.value.GetWeaponRange())
+                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeaponConfig.GetWeaponRange())
                     return true;
             }
             return false;
@@ -105,15 +109,20 @@ namespace RPG.Combat
 
         public void Attack(Health target)
         {
+
             if (target != null)
                 _target = target;
+
+
             //else
             //Cancel();
 
         }
 
+
         public bool CanAttack(GameObject target)
         {
+            if (!GetComponent<Mover>().CanMoveTo(target.transform.position)) return false;
             return target != null && target.GetComponent<Health>().GetIsAlive();
         }
 
@@ -147,9 +156,15 @@ namespace RPG.Combat
                 return;
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            if (currentWeapon.value.HasProjectile())
+
+            if(currentWeapon.value != null)
             {
-                currentWeapon.value.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject,damage);
+                currentWeapon.value.OnHit();
+            }
+
+            if (currentWeaponConfig.HasProjectile())
+            {
+                currentWeaponConfig.LunchProjectile(rightHandTransform, leftHandTransform, _target,gameObject,damage);
             }
             else
             {
@@ -164,18 +179,18 @@ namespace RPG.Combat
 
         public void EquipWeapon(WeaponConfig weapon)
         {
-            currentWeapon.value = weapon;
-            AttachWeapon(weapon);
+            currentWeaponConfig = weapon;
+            currentWeapon.value =  AttachWeapon(weapon);
         }
 
-        private void AttachWeapon(WeaponConfig weapon)
+        private Weapon AttachWeapon(WeaponConfig weapon)
         {
-            weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+            return weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
         }
 
         public object CaptureState()
         {
-            return currentWeapon.value.name;
+            return currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
@@ -189,7 +204,7 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return currentWeapon.value.GetWeaponDamage();
+                yield return currentWeaponConfig.GetWeaponDamage();
             }
         }
 
@@ -197,7 +212,7 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return currentWeapon.value.GetPercentageBonus();
+                yield return currentWeaponConfig.GetPercentageBonus();
             }
         }
     }

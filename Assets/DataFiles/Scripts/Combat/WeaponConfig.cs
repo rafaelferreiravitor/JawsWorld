@@ -44,9 +44,11 @@ namespace RPG.Combat
             projectileInstance.SetTarget(instigator,target, calculatedDamage);
         }
 
-        public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
+        public Weapon Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
             DestroyOldWeapon(rightHand, leftHand);
+
+            Weapon weapon = null;
 
             Transform handTransform;
             handTransform = GetTransform(rightHand, leftHand);
@@ -55,7 +57,7 @@ namespace RPG.Combat
 
             if (EquippedPrefab != null)
             {
-                Weapon weapon = Instantiate(EquippedPrefab, handTransform);
+                weapon = Instantiate(EquippedPrefab, handTransform);
                 weapon.gameObject.name = weaponName;
             }
             if (weaponOverrideController != null)
@@ -66,6 +68,8 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
+
+            return weapon;
         }
 
         private void DestroyOldWeapon(Transform rightHand, Transform leftHand)

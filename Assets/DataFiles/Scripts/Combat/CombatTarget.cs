@@ -23,7 +23,7 @@ namespace RPG.Combat
 
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Fighter>().Attack(gameObject.GetComponent<Health>());
+                    callingController.GetComponent<Fighter>().Attack(gameObject.GetComponent<Health>());
 
                 }
                 return true;

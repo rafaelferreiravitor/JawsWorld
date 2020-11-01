@@ -17,8 +17,9 @@ namespace RPG.Movement
         NavMeshAgent navMeshAgent;
         Health health;
         float maximumSpeed = 6;
+        [SerializeField] float maxPathLength = 40f;
 
-        
+
         void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -73,6 +74,18 @@ namespace RPG.Movement
 
         }
 
+        public bool CanMoveTo(Vector3 destination)
+        {
+
+            NavMeshPath path = new NavMeshPath();
+            bool hasPath = NavMesh.CalculatePath(transform.position, destination, NavMesh.AllAreas, path);
+            if (!hasPath) return false;
+            if (path.status != NavMeshPathStatus.PathComplete) return false;
+            if (GetPathLength(path) > maxPathLength) return false;
+
+            return true;
+        }
+
 
         public void StartAction(Vector3 destination, float fractionSpeed, float stopRange = 0)
         {
@@ -92,6 +105,17 @@ namespace RPG.Movement
         {
             public SerializableVector3 position;
             public SerializableVector3 rotation;
+        }
+
+        private float GetPathLength(NavMeshPath path)
+        {
+            float sum = 0;
+            if (path.corners.Length < 2) return sum;
+            for (int i = 0; i < path.corners.Length - 1; i++)
+            {
+                sum += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+            }
+            return sum;
         }
 
 
