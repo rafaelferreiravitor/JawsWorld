@@ -54,7 +54,7 @@ namespace RPG.Combat
             CheckIfAlive();
             if (_target != null)
             {
-                if (IsInRange() == false)
+                if (IsInRange(_target.transform) == false)
                 {
                     //GetComponent<Mover>().StartAction(_target.transform.position,1f,weaponDamage);
                     StartAction(_target);
@@ -97,12 +97,14 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("attack");
         }
 
-        bool IsInRange()
+        bool IsInRange(Transform target)
         {
-            if (_target != null)
+            if (target != null)
             {
-                if (Vector3.Distance(transform.position, _target.transform.position) <= currentWeaponConfig.GetWeaponRange())
+                if (Vector3.Distance(transform.position, target.transform.position) <= currentWeaponConfig.GetWeaponRange())
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -122,7 +124,12 @@ namespace RPG.Combat
 
         public bool CanAttack(GameObject target)
         {
-            if (!GetComponent<Mover>().CanMoveTo(target.transform.position)) return false;
+            print("*****************");
+            print("primeiro: "+GetComponent<Mover>().CanMoveTo(target.transform.position));
+            print("segundo: " + IsInRange(target.transform));
+            print("*****************");
+            if (!GetComponent<Mover>().CanMoveTo(target.transform.position) &&
+                !IsInRange(target.transform)) return false;
             return target != null && target.GetComponent<Health>().GetIsAlive();
         }
 

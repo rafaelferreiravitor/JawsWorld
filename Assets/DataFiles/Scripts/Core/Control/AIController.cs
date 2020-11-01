@@ -23,9 +23,12 @@ namespace RPG.Control
         float waypointTolerance = 2f;
         float dwelingTime = 5f;
         float timeSinceLastDweling;
+        float timeSinceLastAggrevated = Mathf.Infinity;
+        float aggroCooldownTime = 5f;
         float patrolFractionSpeed = 0.2f;
         float attackFractionSpeed = 0.7f;
         LazyValue<Vector3> guardposition;
+        [SerializeField] float shoutDistance = 5f;
 
         private void Awake()
         {
@@ -52,7 +55,7 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (InAttackRangeOfPlayer())
+            if (IsAggrevated())
             {
                 AttackBehaviour();
             }
@@ -64,6 +67,11 @@ namespace RPG.Control
             {
                 PatrolBehaviour();
             }
+        }
+
+        public void Aggrevate()
+        {
+            timeSinceLastAggrevated = 0;
         }
 
         private bool Suspicious()
@@ -126,11 +134,26 @@ namespace RPG.Control
 
             //fighter.Attack(playerTarget.GetComponent<Health>());
             timeSinceLastSawPlayer = Time.time;
+
+            AggrevatedNearbyEnemies();
         }
 
-        private bool InAttackRangeOfPlayer()
+        private void AggrevatedNearbyEnemies()
         {
-            return (Vector3.Distance(transform.position, playerTarget.transform.position) <= chaseDistance && fighter.CanAttack(playerTarget));
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance,Vector3.up,0);
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                if (ai == null) continue;
+                ai.Aggrevate();
+            }
+        }
+
+        private bool IsAggrevated()
+        {
+            timeSinceLastAggrevated += Time.deltaTime;
+            return (Vector3.Distance(transform.position, playerTarget.transform.position) <= chaseDistance && fighter.CanAttack(playerTarget)) ||
+                timeSinceLastAggrevated < aggroCooldownTime;
         }
 
         private void OnDrawGizmosSelected()
