@@ -12,7 +12,7 @@ namespace RPG.Stats
     {
         [Range(1,99)]
         [SerializeField] int startingLevel = 1;
-        [SerializeField] CharacterClass characterClass;
+        public CharacterClass characterClass;
         [SerializeField] Progression progression = null;
         [SerializeField] GameObject levelUpFX;
         [SerializeField] bool shouldUseModifiers = false;

@@ -6,6 +6,7 @@ using RPG.Core;
 using System;
 using RPG.Attributes;
 using GameDevTV.Utils;
+using RPG.Stats;
 
 namespace RPG.Control
 {
@@ -130,7 +131,8 @@ namespace RPG.Control
         private void AttackBehaviour()
         {
             fighter.StartAction(playerTarget.GetComponent<Health>());
-            mover.StartAction(playerTarget.GetComponent<Health>().transform.position, attackFractionSpeed);
+            //if(GetComponent<BaseStats>().characterClass == CharacterClass.Archer || GetComponent<BaseStats>().characterClass == CharacterClass.Mage)
+            //mover.StartAction(playerTarget.GetComponent<Health>().transform.position, attackFractionSpeed);
 
             //fighter.Attack(playerTarget.GetComponent<Health>());
             timeSinceLastSawPlayer = Time.time;

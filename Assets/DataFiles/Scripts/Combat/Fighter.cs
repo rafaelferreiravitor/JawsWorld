@@ -57,6 +57,7 @@ namespace RPG.Combat
                 if (IsInRange(_target.transform) == false)
                 {
                     //GetComponent<Mover>().StartAction(_target.transform.position,1f,weaponDamage);
+                    GetComponent<Mover>().StartAction(_target.transform.position, 1f, currentWeaponConfig.GetWeaponRange());
                     StartAction(_target);
                 }
                 else 
