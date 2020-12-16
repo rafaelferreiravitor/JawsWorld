@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameDevTV.Utils
+﻿namespace GameDevTV.Utils
 {
     /// <summary>
     /// Container class that wraps a value and ensures initialisation is 

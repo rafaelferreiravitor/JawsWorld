@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20eb1792e8048a46bf5c7c520a3ea3b, type: 3}
+  m_Name: Hat
+  m_EditorClassIdentifier: 
+  itemID: 38ba5840-d71c-4078-b939-1beee2f66b69
+  displayName: 
+  description: 
+  icon: {fileID: 0}
+  pickup: {fileID: 5153634387421435011, guid: b2a0e7bf9192a874ea6a4f45d7f3cbc3, type: 3}
+  stackable: 0
+  allowedEquipLocation: 0
