@@ -31,14 +31,18 @@ namespace RPG.Control
         [SerializeField] float maxPathLength = 40f;
         [SerializeField] float raycastRadius = 1f;
 
+        bool UIAction = false;
+
         // Update is called once per frame
         void Update()
         {
             if (InteractWithComponent()) return;
             if (InteractWithUI()) return;
+
             //if (InteractWithCursorClick())
             //    return;
-            if(InteractWithMovement()) return;
+            if(!UIAction)
+                if (InteractWithMovement()) return;
             SetCursor(CursorType.None);
             /*else if (InteractWithMovement())
                 return;
@@ -111,11 +115,20 @@ namespace RPG.Control
 
         private bool InteractWithUI()
         {
+            if (Input.GetMouseButtonUp(0))
+                UIAction = false;
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 SetCursor(CursorType.UI);
+                if (Input.GetMouseButton(0))
+                    UIAction = true;
                 return true;
             }
+
+            if (UIAction)
+                return true;
+
             return false;
         }
 
