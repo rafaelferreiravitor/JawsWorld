@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Control;
+using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
@@ -25,6 +26,8 @@ namespace RPG.Combat
         WeaponConfig currentWeaponConfig;
         LazyValue<Weapon> currentWeapon;
 
+        Equipment equipment;
+
         public Health GetTarget()
         {
             return _target;
@@ -34,6 +37,27 @@ namespace RPG.Combat
         {
             currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+
+            equipment = GetComponent<Equipment>();
+            if (equipment)
+            {
+                equipment.equipmentUpdated += UpdateWeapon;
+            }
+        }
+
+        private void UpdateWeapon()
+        {
+            print("hereeeeee");
+            var weapon = equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig;
+            if(weapon == null)
+            {
+                print("hereeeeee");
+                EquipWeapon(defaultWeapon);
+            }
+            else
+            {
+                EquipWeapon(weapon);
+            }
         }
 
         private Weapon SetupDefaultWeapon()
@@ -125,10 +149,10 @@ namespace RPG.Combat
 
         public bool CanAttack(GameObject target)
         {
-            print("*****************");
+            /*print("*****************");
             print("primeiro: "+GetComponent<Mover>().CanMoveTo(target.transform.position));
             print("segundo: " + IsInRange(target.transform));
-            print("*****************");
+            print("*****************");*/
             if (!GetComponent<Mover>().CanMoveTo(target.transform.position) &&
                 !IsInRange(target.transform)) return false;
             return target != null && target.GetComponent<Health>().GetIsAlive();
