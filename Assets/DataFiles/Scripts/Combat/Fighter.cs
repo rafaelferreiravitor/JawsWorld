@@ -13,7 +13,7 @@ using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [SerializeField] float timeBetweenEffects = 5f;
         Health _target;
@@ -232,20 +232,6 @@ namespace RPG.Combat
             EquipWeapon(weapon);
         }
 
-        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return currentWeaponConfig.GetWeaponDamage();
-            }
-        }
 
-        public IEnumerable<float> GetPercentageModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return currentWeaponConfig.GetPercentageBonus();
-            }
-        }
     }
 }

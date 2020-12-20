@@ -9,13 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f20eb1792e8048a46bf5c7c520a3ea3b, type: 3}
-  m_Name: Hat
+  m_Script: {fileID: 11500000, guid: 59627ddbbfa9dd94ca27f86f1b2bc85d, type: 3}
+  m_Name: Health Hat
   m_EditorClassIdentifier: 
-  itemID: 38ba5840-d71c-4078-b939-1beee2f66b69
-  displayName: 
+  itemID: 26a0cf3a-74e6-47dd-bd47-af374b6da979
+  displayName: health hat
   description: 
-  icon: {fileID: 21300000, guid: c1b61b3a91732a747a8496fc75a13fe2, type: 3}
+  icon: {fileID: 21300000, guid: bc7147459da6e0944b077b8808cf1898, type: 3}
   pickup: {fileID: 5153634387421435011, guid: b2a0e7bf9192a874ea6a4f45d7f3cbc3, type: 3}
-  stackable: 1
+  stackable: 0
   allowedEquipLocation: 0
+  addtiveModifiers:
+  - stat: 0
+    value: 20
+  percentageModifiers: []
